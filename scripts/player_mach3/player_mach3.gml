@@ -67,7 +67,7 @@ function player_mach3()
 		}
 		
 		if (movespeed < 20 && p_move == xscale)
-			movespeed += mach4mode ? 0.1 : 0.025
+			movespeed += mach4mode ? 0.005 : 0.01
 			
 		if (key_up.down && !dashpad)
 		{

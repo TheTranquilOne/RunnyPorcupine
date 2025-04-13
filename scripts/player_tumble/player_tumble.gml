@@ -51,22 +51,9 @@ function player_tumble()
 		
 	if (state != states.groundpound && place_meeting(x + xscale, y, obj_solid))
 	{
-		hsp = 0
-		movespeed = 0
-		/*if (sprite_index == spr_player_ball || sprite_index == 'tumblestart)
-		{
-			state = states.bump
-			sprite_index = spr_player_tumbleend'
-			hsp = -xscale * 2
-			vsp = -3
-			jumpstop = true
-		}
-		else
-		{*/
-			state = states.bump
-			reset_anim(spr_player_wallsplat)
-			scr_sound_3d(sfx_splat, x, y)
-		//}
+        scr_sound_3d(sfx_splat, x, y)
+        xscale = -xscale;
+        movespeed = min(10, movespeed);
 	}
 	
 	if (grounded && vsp > 0)
@@ -114,7 +101,7 @@ function player_tumble()
 	{
 		image_speed = movespeed / 20
 		if (anim_ended())
-			image_index = 2
+			image_index = 0
 	}
 	
 	aftimg_timers.blur.do_it = true

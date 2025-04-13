@@ -35,7 +35,7 @@ function player_mach2()
 			}
 		}
 		if (movespeed < 12)
-			movespeed += 0.1
+			movespeed += 0.08
 		else
 		{
 			if (sprite_index != spr_player_rollgetup)

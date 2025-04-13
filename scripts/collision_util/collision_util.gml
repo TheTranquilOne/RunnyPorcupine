@@ -253,18 +253,24 @@ function scr_slope(_x, _y)
 
 function do_slope_momentum(spd_up = 20)
 {
-	var go_down = false
+	var go_down = false, go_up = false;
 	with (instance_place(x, y + 1, obj_slope))
 	{
-		if (collide_slope(other, other.x, other.y + 1) && other.xscale != sign(image_xscale))
-			go_down = true
+		if (collide_slope(other, other.x, other.y + 1)) {
+            if other.xscale != sign(image_xscale)
+			    go_down = true;
+            else go_up = true;
+        }
 	}
 	
 	with (instance_place(x, y, obj_slopeplatform))
-	{
-		if (collide_slopeplatform(other, other.x, other.y + 1) && other.xscale != sign(image_xscale))
-			go_down = true
+	{ 
+        if (collide_slopeplatform(other, other.x, other.y + 1)) {
+            if other.xscale != sign(image_xscale)
+			    go_down = true;
+            else go_up = true;
+        }
 	}
-	if (go_down)
-		movespeed = approach(movespeed, spd_up, 0.1)
+    if go_up || go_down
+        movespeed = approach(movespeed, (go_down ? 20 : 6), 0.2)
 }
